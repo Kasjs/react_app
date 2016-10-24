@@ -18,7 +18,16 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
-  module: { 
+  module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loaders: ['eslint'],
+        include: [
+          path.resolve(__dirname, "src"),
+        ],
+      }
+    ], 
     loaders: [ 
       {
         loaders: ['babel-loader'],
@@ -26,7 +35,7 @@ module.exports = {
           path.resolve(__dirname, "src"),
         ],
         test: /\.js$/,
-        plugins: ['transform-runtime'],
+        plugins: ['transform-runtime','react-hot-loader'],
       }
     ]
   }
